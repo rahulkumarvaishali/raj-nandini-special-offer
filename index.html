@@ -4,34 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Special Offer For Raj Nandini ❤️</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
+
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100dvh; /* FIXED */
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(45deg, #ff6b81, #ff9ff3);
     font-family: 'Playfair Display', serif;
-    overflow: hidden;
+    overflow-x: hidden; /* FIXED */
+    padding: 15px;
 }
 
 .container {
     text-align: center;
     color: white;
     padding: 20px;
+    width: 100%;
+    max-width: 500px; /* RESPONSIVE */
+    position: relative; /* IMPORTANT */
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem); /* RESPONSIVE */
     animation: fadeIn 2s ease-in-out;
+    line-height: 1.5;
 }
 
 .soft-text {
     font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2rem); /* RESPONSIVE */
     font-weight: 700;
     margin-bottom: 20px;
     color: #ffffff;
@@ -48,7 +56,7 @@ h1 {
 
 button {
     padding: 12px 25px;
-    font-size: 18px;
+    font-size: clamp(14px, 2.5vw, 18px); /* RESPONSIVE */
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -64,7 +72,7 @@ button {
 #noBtn {
     background-color: #ff4757;
     color: white;
-    position: absolute;
+    position: fixed; /* FIXED for responsiveness */
 }
 
 button:hover {
@@ -77,8 +85,7 @@ button:hover {
 }
 
 .heart {
-    position: absolute;
-    color: white;
+    position: fixed;
     animation: float 5s linear infinite;
 }
 
@@ -86,6 +93,14 @@ button:hover {
     from { transform: translateY(100vh); opacity: 1; }
     to { transform: translateY(-10vh); opacity: 0; }
 }
+
+/* Small Screen Extra Fix */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+}
+
 </style>
 </head>
 
@@ -109,10 +124,10 @@ button:hover {
     </div>
 </div>
 
-<!-- 🎵 Background Music -->
 <audio id="bgMusic" src="MaroonColorSadiya.mp3" loop></audio>
 
 <script>
+
 var noBtn = document.getElementById("noBtn");
 var yesBtn = document.getElementById("yesBtn");
 var bgMusic = document.getElementById("bgMusic");
@@ -131,21 +146,26 @@ noBtn.addEventListener("touchstart", function(e){
 /* YES Button */
 yesBtn.addEventListener("click", function() {
 
-    bgMusic.play().catch(function(error){
-        console.log("Music blocked:", error);
-    });
+    bgMusic.play().catch(function(error){});
 
     document.querySelector(".container").innerHTML =
-        "<h1 style='color:white;font-size:2.8rem;'>🎉 Membership Activated Successfully ❤️<br><br>Welcome to Forever 😍</h1>";
+        "<h1 style='font-size:clamp(1.6rem,4vw,2.8rem);'>🎉 Membership Activated Successfully ❤️<br><br>Welcome to Forever 😍</h1>";
 
     createHearts();
 });
 
 function moveButton() {
+
     noClickCount++;
 
-    var x = Math.random() * (window.innerWidth - 120);
-    var y = Math.random() * (window.innerHeight - 60);
+    var btnWidth = noBtn.offsetWidth;
+    var btnHeight = noBtn.offsetHeight;
+
+    var maxX = window.innerWidth - btnWidth - 10;
+    var maxY = window.innerHeight - btnHeight - 10;
+
+    var x = Math.random() * maxX;
+    var y = Math.random() * maxY;
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
