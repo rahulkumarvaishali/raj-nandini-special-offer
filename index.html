@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Future Wife ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #ff6b81, #ff9ff3);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    font-size: 2.5rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #2ed573;
+    color: white;
+}
+
+#noBtn {
+    background-color: #ff4757;
+    color: white;
+    position: absolute;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+    position: absolute;
+    color: white;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Raj Nandini ❤️<br>Will You Marry Me Again Every Lifetime?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 😜</button>
+    </div>
+</div>
+
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" src="HariHariOdhani.mp3" loop></audio>
+
+<script>
+var noBtn = document.getElementById("noBtn");
+var yesBtn = document.getElementById("yesBtn");
+var bgMusic = document.getElementById("bgMusic");
+
+var noClickCount = 0;
+
+// Desktop
+noBtn.addEventListener("mouseover", moveButton);
+
+// Mobile
+noBtn.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    moveButton();
+});
+
+// Yes Button
+yesBtn.addEventListener("click", function() {
+    bgMusic.play();
+    document.querySelector(".container").innerHTML =
+        "<h1 style='color:white;font-size:3rem;'>Yayyy ❤️ I Love You Forever 😍</h1>";
+    createHearts();
+});
+
+function moveButton() {
+    noClickCount++;
+
+    var x = Math.random() * (window.innerWidth - 120);
+    var y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // 5 tries → cute message
+    if(noClickCount === 5) {
+        alert("Itna try mat karo 😏 Yes hi karna padega ❤️");
+    }
+
+    // 8+ tries → ultra fast mode
+    if(noClickCount > 8) {
+        noBtn.style.transition = "0.05s";
+    }
+}
+
+function createHearts() {
+    setInterval(function() {
+        var heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(function() {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
