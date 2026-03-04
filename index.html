@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Future Wife ❤️</title>
-
+<title>Special Offer For Raj Nandini ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <style>
 body {
     margin: 0;
@@ -14,18 +14,32 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(45deg, #ff6b81, #ff9ff3);
-    font-family: Arial, sans-serif;
+    font-family: 'Playfair Display', serif;
     overflow: hidden;
 }
 
 .container {
     text-align: center;
     color: white;
+    padding: 20px;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     animation: fadeIn 2s ease-in-out;
+}
+
+.soft-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 15px rgba(255,182,193,0.9),
+        0 0 25px rgba(255,105,180,0.8);
+    letter-spacing: 1px;
 }
 
 .buttons {
@@ -78,16 +92,25 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>Raj Nandini ❤️<br>Will You Marry Me Again Every Lifetime?</h1>
+    
+    <div class="soft-text">
+        Raj Nandini… ❤️ 
+    </div>
+
+    <h1>
+        💖 Special Lifetime Offer 💖 <br><br>
+        Kya tum meri life ki <br>
+        <b>Lifetime Membership</b> accept karogi?
+    </h1>
 
     <div class="buttons">
-        <button id="yesBtn">Yes ❤️</button>
-        <button id="noBtn">No 😜</button>
+        <button id="yesBtn">Accept Forever 💍</button>
+        <button id="noBtn">Decline ❌</button>
     </div>
 </div>
 
 <!-- 🎵 Background Music -->
-<audio id="bgMusic" src="HariHariOdhani.mp3" loop></audio>
+<audio id="bgMusic" src="MaroonColorSadiya.mp3" loop></audio>
 
 <script>
 var noBtn = document.getElementById("noBtn");
@@ -96,20 +119,25 @@ var bgMusic = document.getElementById("bgMusic");
 
 var noClickCount = 0;
 
-// Desktop
+/* Desktop */
 noBtn.addEventListener("mouseover", moveButton);
 
-// Mobile
+/* Mobile */
 noBtn.addEventListener("touchstart", function(e){
     e.preventDefault();
     moveButton();
 });
 
-// Yes Button
+/* YES Button */
 yesBtn.addEventListener("click", function() {
-    bgMusic.play();
+
+    bgMusic.play().catch(function(error){
+        console.log("Music blocked:", error);
+    });
+
     document.querySelector(".container").innerHTML =
-        "<h1 style='color:white;font-size:3rem;'>Yayyy ❤️ I Love You Forever 😍</h1>";
+        "<h1 style='color:white;font-size:2.8rem;'>🎉 Membership Activated Successfully ❤️<br><br>Welcome to Forever 😍</h1>";
+
     createHearts();
 });
 
@@ -119,16 +147,13 @@ function moveButton() {
     var x = Math.random() * (window.innerWidth - 120);
     var y = Math.random() * (window.innerHeight - 60);
 
-    noBtn.style.position = "absolute";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
-    // 5 tries → cute message
     if(noClickCount === 5) {
-        alert("Itna try mat karo 😏 Yes hi karna padega ❤️");
+        alert("Lifetime offer itni easily miss nahi hota 😏❤️");
     }
 
-    // 8+ tries → ultra fast mode
     if(noClickCount > 8) {
         noBtn.style.transition = "0.05s";
     }
@@ -148,6 +173,7 @@ function createHearts() {
         }, 5000);
     }, 300);
 }
+
 </script>
 
 </body>
